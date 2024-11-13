@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Passer la commande{% endblock %}
+
+{% block body %}
+    <h1>Informations de Commande</h1>
+
+    <form action="{{ path('order_confirm') }}" method="POST">
+        <label>Adresse d'expédition :</label>
+        <input type="text" name="shippingAddress" required>
+
+        <label>Numéro de téléphone :</label>
+        <input type="text" name="phoneNumber" required>
+
+        <button type="submit">Confirmer la commande</button>
+    </form>
+{% endblock %}

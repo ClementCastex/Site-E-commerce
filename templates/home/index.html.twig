@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur notre Boutique{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue sur notre Boutique en ligne !</h1>
+    <p>Découvrez nos produits les plus populaires et nos dernières offres.</p>
+    <a href="{{ path('product_index') }}" class="btn">Voir le catalogue</a>
+{% endblock %}
