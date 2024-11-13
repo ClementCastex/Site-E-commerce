@@ -20,11 +20,11 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 2, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $price = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $iÃmageUrl = null;
+    private ?string $imageUrl = null;
 
     #[ORM\Column]
     private ?int $stockQuantity = null;
@@ -35,13 +35,6 @@ class Product
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -80,14 +73,14 @@ class Product
         return $this;
     }
 
-    public function getIÃmageUrl(): ?string
+    public function getImageUrl(): ?string
     {
-        return $this->iÃmageUrl;
+        return $this->imageUrl;
     }
 
-    public function setIÃmageUrl(string $iÃmageUrl): static
+    public function setImageUrl(string $imageUrl): static
     {
-        $this->iÃmageUrl = $iÃmageUrl;
+        $this->imageUrl = $imageUrl;
 
         return $this;
     }

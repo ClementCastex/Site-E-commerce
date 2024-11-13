@@ -1,10 +1,12 @@
 <?php
 
+
 namespace App\Entity;
 
-use App\Repository\OrderItemRepository;
+use App\Entity\Product;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrderItemRepository;
 
 #[ORM\Entity(repositoryClass: OrderItemRepository::class)]
 class OrderItem
@@ -30,13 +32,6 @@ class OrderItem
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getOrderReference(): ?Order
