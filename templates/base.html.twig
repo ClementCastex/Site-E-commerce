@@ -10,9 +10,15 @@
 <body>
     <header>
         <nav>
+            <a href="{{ path('home_index') }}">Home</a>
             <a href="{{ path('product_index') }}">Catalogue</a>
             <a href="{{ path('cart_index') }}">Panier</a>
             <a href="{{ path('order_index') }}">Commande</a>
+            {# SearchBar #}
+            <form action="{{ path('product_search') }}" method="get" class="search-form">
+            <input type="text" name="q" placeholder="Rechercher un produit..." value="{{ app.request.query.get('q') }}">
+            <button type="submit">Rechercher</button>
+</form>
         </nav>
     </header>
 

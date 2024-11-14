@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de la recherche{% endblock %}
+
+{% block body %}
+    <h1>Résultats de la recherche pour "{{ keyword }}"</h1>
+
+    {% if products is empty %}
+        <p>Aucun produit trouvé.</p>
+    {% else %}
+        <div class="products">
+            {% for product in products %}
+                <div class="product">
+                    <h2>{{ product.name }}</h2>
+                    <img src="{{ product.imageUrl }}" alt="{{ product.name }}">
+                    <p>{{ product.description | slice(0, 100) }}...</p>
+                    <p><strong>Prix : </strong>{{ product.price }} €</p>
+                    <a href="{{ path('product_show', { id: product.id }) }}">Voir le produit</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
