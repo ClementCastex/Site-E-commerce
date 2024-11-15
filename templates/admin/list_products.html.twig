@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+<a href="{{ path('admin_dashboard') }}" class="btn btn-secondary">Retour au tableau de bord</a>
+    <h1>Gestion des produits</h1>
+
+    <div class="product-list">
+        {% for product in products %}
+            <div class="product-item">
+                <h2>{{ product.name }}</h2>
+                <p><strong>Description :</strong> {{ product.description }}</p>
+                <p><strong>Prix :</strong> {{ product.price }} €</p>
+                <p><strong>Quantité en stock :</strong> {{ product.stockQuantity }}</p>
+                <a href="{{ path('admin_product_edit', { id: product.id }) }}" class="btn btn-primary">Modifier</a>
+
+                <form action="{{ path('admin_product_delete', { id: product.id }) }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

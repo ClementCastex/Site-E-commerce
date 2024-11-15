@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des produits en avant{% endblock %}
+
+{% block body %}
+    <a href="{{ path('admin_dashboard') }}" class="btn btn-secondary">Retour au tableau de bord</a>
+    <h1>Gestion des produits en avant</h1>
+
+    <form method="post">
+        <div class="product-list">
+            {% for product in products %}
+                <div class="product-item">
+                    <label>
+                        <input type="checkbox" name="featured_products[]" value="{{ product.id }}" 
+                            {% if product.isFeatured %}checked{% endif %}>
+                        {{ product.name }} - {{ product.price }} €
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-success">Mettre à jour</button>
+    </form>
+{% endblock %}

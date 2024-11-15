@@ -3,12 +3,14 @@ namespace App\Entity;
 
 use App\Entity\Order;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\UserRepository;
+use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-class Users
+#[ORM\Entity(repositoryClass: UsersRepository::class)]
+class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,6 +19,9 @@ class Users
 
     #[ORM\Column(length: 255)]
     private ?string $username = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
 
     #[ORM\Column(length: 255)]
     private ?string $role = null;
@@ -49,6 +54,18 @@ class Users
     public function setUsername(string $username): static
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
 
         return $this;
     }
@@ -104,5 +121,24 @@ class Users
         }
 
         return $this;
+    }
+
+    // Implémentation de l'interface UserInterface
+
+    public function getRoles(): array
+    {
+        // Retourne le rôle de l'utilisateur. On s'assure qu'il y a au moins ROLE_USER
+        return [$this->role ?? 'ROLE_USER'];
+    }
+
+    public function getUserIdentifier(): string
+    {
+        // Utilise le nom d'utilisateur comme identifiant unique pour l'authentification
+        return $this->username;
+    }
+    
+    public function eraseCredentials(): void
+    {
+        // Cette méthode peut rester vide si tu n'as pas d'informations sensibles à effacer
     }
 }

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord admin{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue dans l'administration</h1>
+
+    <div class="dashboard-sections">
+        <section>
+            <h2>Gestion des Produits</h2>
+            <ul>
+                <li><a href="{{ path('admin_product_add') }}" class="btn btn-primary">Ajouter un produit</a></li>
+                <li><a href="{{ path('admin_product_list') }}" class="btn btn-secondary">Gérer les produits</a></li>
+                <li><a href="{{ path('admin_featured_products') }}" class="btn btn-info">Gérer les produits en avant</a></li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Paramètres</h2>
+            <p>Fonctionnalités supplémentaires pour l'administration à ajouter ici si nécessaire.</p>
+        </section>
+    </div>
+{% endblock %}

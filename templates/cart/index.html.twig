@@ -15,17 +15,50 @@
         {% for item in cart %}
             <tr>
                 <td>{{ item.product.name }}</td>
-                <td>{{ item.quantity }}</td>
+                <td>
+                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" 
+                           data-product-id="{{ item.product.id }}" class="quantity-input">
+                </td>
                 <td>{{ item.product.price * item.quantity }} €</td>
                 <td>
-
                     <a href="{{ path('cart_remove', { id: item.product.id }) }}">Retirer</a>
                 </td>
             </tr>
         {% endfor %}
     </table>
 
-    <h3>Total : {{ total }} €</h3>
+    <h3>Total : <span id="cart-total">{{ total }} €</span></h3>
 
     <a href="{{ path('order_index') }}">Passer à la commande</a>
+
+    <script>
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            input.addEventListener('change', function() {
+                const productId = this.getAttribute('data-product-id');
+                const quantity = this.value;
+
+                fetch("{{ path('cart_update_quantity') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "X-Requested-With": "XMLHttpRequest"
+                    },
+                    body: new URLSearchParams({
+                        id: productId,
+                        quantity: quantity
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Met à jour le total du panier
+                        document.getElementById('cart-total').textContent = data.newTotal + " €";
+                    } else {
+                        alert("Erreur lors de la mise à jour de la quantité");
+                    }
+                })
+                .catch(error => console.error("Erreur :", error));
+            });
+        });
+    </script>
 {% endblock %}

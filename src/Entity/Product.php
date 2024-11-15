@@ -32,6 +32,12 @@ class Product
     #[ORM\Column]
     private ?bool $isFeatured = null;
 
+
+    public function __construct()
+{
+    $this->isFeatured = false; 
+}
+
     public function getId(): ?int
     {
         return $this->id;
@@ -97,15 +103,14 @@ class Product
         return $this;
     }
 
-    public function isFeatured(): ?bool
+    public function isFeatured(): bool
     {
         return $this->isFeatured;
     }
 
-    public function setFeatured(bool $isFeatured): static
+    public function setIsFeatured(bool $isFeatured): self
     {
         $this->isFeatured = $isFeatured;
-
         return $this;
     }
 }

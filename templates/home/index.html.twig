@@ -1,9 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenue sur notre Boutique{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur notre Boutique en ligne !</h1>
-    <p>Découvrez nos produits les plus populaires et nos dernières offres.</p>
-    <a href="{{ path('product_index') }}" class="btn">Voir le catalogue</a>
+    <h1>Bienvenue sur notre site</h1>
+
+    <!-- Section Produits en avant -->
+    <section>
+        <h2>Produits en avant</h2>
+        <div class="product-list">
+            {% for product in featuredProducts %}
+                <div class="product-item">
+                    <h3>{{ product.name }}</h3>
+                    <img src="{{ product.imageUrl }}" alt="{{ product.name }}" width="150">
+                    <p>{{ product.description }}</p>
+                    <p><strong>Prix :</strong> {{ product.price }} €</p>
+                </div>
+            {% else %}
+                <p>Aucun produit en avant pour le moment.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Section Nouveauté -->
+    <section>
+        <h2>Nouveauté</h2>
+        <div class="product-list">
+            {% for product in latestProducts %}
+                <div class="product-item">
+                    <h3>{{ product.name }}</h3>
+                    <img src="{{ product.imageUrl }}" alt="{{ product.name }}" width="150">
+                    <p>{{ product.description }}</p>
+                    <p><strong>Prix :</strong> {{ product.price }} €</p>
+                </div>
+            {% else %}
+                <p>Aucun nouveau produit pour le moment.</p>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

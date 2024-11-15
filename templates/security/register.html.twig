@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<h1>Inscription</h1>
+
+{% if errors is defined %}
+    <div class="alert alert-danger">
+        {% for error in errors %}
+            {{ error.message }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<form method="post" action="{{ path('app_register') }}">
+    <div class="mb-3">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" id="username" name="username" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
+</form>
+
+<p>Déjà un compte ? <a href="{{ path('app_login') }}">Connectez-vous ici</a></p>
+{% endblock %}
