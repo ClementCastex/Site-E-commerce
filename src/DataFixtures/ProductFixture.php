@@ -17,10 +17,9 @@ class ProductFixture extends Fixture
             $product->setPrice(mt_rand(10, 100) . '.99');
             $product->setImageUrl('https://via.placeholder.com/150');
             $product->setStockQuantity(mt_rand(1, 50));
-            $product->setFeatured($i % 2 === 0);
+            $product->setIsFeatured($i % 2 === 0); 
 
             $manager->persist($product);
-
 
             $this->addReference('product_' . $i, $product);
         }

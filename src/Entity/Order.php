@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderRepository;
+use App\Entity\Users;
+use App\Entity\OrderItem;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrderRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
@@ -34,9 +38,14 @@ class Order
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'orderReference', targetEntity: OrderItem::class, cascade: ['persist', 'remove'])]
+    private Collection $orderItems;
+
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->orderItems = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -112,6 +121,31 @@ class Order
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+    public function getOrderItems(): Collection
+    {
+        return $this->orderItems;
+    }
+
+    public function addOrderItem(OrderItem $orderItem): self
+    {
+        if (!$this->orderItems->contains($orderItem)) {
+            $this->orderItems->add($orderItem);
+            $orderItem->setOrderReference($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderItem(OrderItem $orderItem): self
+    {
+        if ($this->orderItems->removeElement($orderItem)) {
+            if ($orderItem->getOrderReference() === $this) {
+                $orderItem->setOrderReference(null);
+            }
+        }
 
         return $this;
     }

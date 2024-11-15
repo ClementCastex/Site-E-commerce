@@ -4,6 +4,18 @@
 
 {% block body %}
     <h1>Merci pour votre commande !</h1>
-    <p>Numéro de commande : {{ order.orderNumber }}</p>
-    <p>Nous traiterons votre commande sous peu.</p>
+    <p>Votre commande numéro {{ order.orderNumber }} a été passée avec succès.</p>
+    <p>Adresse de livraison : {{ order.shippingAddress }}</p>
+    <p>Numéro de téléphone : {{ order.phoneNumber }}</p>
+    
+    <h2>Résumé de la commande :</h2>
+    <ul>
+        {% for item in order.orderItems %}
+            <li>{{ item.product.name }} - Quantité : {{ item.quantity }} - Prix : {{ item.price }}€</li>
+        {% endfor %}
+    </ul>
+
+    <p>Total : {{ totalPrice }}€</p>
+
+    <a href="{{ path('home_index') }}" class="btn btn-primary">Retour à l'accueil</a>
 {% endblock %}

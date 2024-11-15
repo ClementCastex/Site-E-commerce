@@ -10,7 +10,14 @@
 <body>
     <header>
         <nav>
-            <a href="{{ path('home_index') }}">Home</a>
+            <a href="{{ path('home_index') }}">Accueil</a>
+            {% if app.user %}
+                <span>Bienvenue, {{ app.user.username }}!</span> 
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Connexion</a>
+                <a href="{{ path('app_register') }}">Inscription</a>
+            {% endif %}
             <a href="{{ path('product_index') }}">Catalogue</a>
             <a href="{{ path('cart_index') }}">Panier</a>
             <a href="{{ path('order_index') }}">Commande</a>
@@ -36,5 +43,14 @@
         {{ message }}
     </div>
 {% endfor %}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
 </body>
 </html>
+
+

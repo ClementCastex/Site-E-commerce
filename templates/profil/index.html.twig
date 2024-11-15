@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue sur votre profil, {{ user.username }}!</h1>
+
+    <p><strong>Nom d'utilisateur :</strong> {{ user.username }}</p>
+    <p><strong>Rôle :</strong> {{ user.role }}</p>
+    <p><strong>Date de création :</strong> {{ user.createdAt|date('d/m/Y') }}</p>
+
+    <a href="{{ path('home_index') }}">Retour à l'accueil</a>
+{% endblock %}
