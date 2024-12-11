@@ -41,7 +41,6 @@ class Order
     #[ORM\OneToMany(mappedBy: 'orderReference', targetEntity: OrderItem::class, cascade: ['persist', 'remove'])]
     private Collection $orderItems;
 
-
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -124,6 +123,7 @@ class Order
 
         return $this;
     }
+
     public function getOrderItems(): Collection
     {
         return $this->orderItems;

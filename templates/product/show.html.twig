@@ -5,14 +5,19 @@
 {% block body %}
     <h1>{{ product.name }}</h1>
 
-    <div class="product-detail">
-        <img src="{{ product.imageUrl }}" alt="{{ product.name }}">
-        <p><strong>Description : </strong>{{ product.description }}</p>
-        <p><strong>Prix : </strong>{{ product.price }} €</p>
-        <p><strong>Quantité en stock : </strong>{{ product.stockQuantity }}</p>
-    </div>
-    
-    <a href="{{ path('cart_add', { id: product.id }) }}" class="btn">Ajouter au panier</a>
-
-    <a href="{{ path('product_index') }}">Retour à la liste des produits</a>
+<div class="product-detail">
+    <img src="{{ product.imageUrl }}" alt="{{ product.name }}">
+    <p><strong>Description : </strong>{{ product.description }}</p>
+    <p><strong>Prix : </strong>{{ product.price }} €</p>
+    <p><strong>Quantité en stock : </strong>{{ product.stockQuantity }}</p>
+    <form action="{{ path('cart_add', { id: product.id }) }}" method="post" class="add-to-cart-form">
+            <label for="quantity">Quantité :</label>
+            <select name="quantity" id="quantity">
+                {% for i in 1..product.stockQuantity %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+            <button  href="{{ path('cart_add', { id: product.id }) }}" type="submit" class="btn add-to-cart-btn">Ajouter au panier</button>
+        </form>
+</div>
 {% endblock %}

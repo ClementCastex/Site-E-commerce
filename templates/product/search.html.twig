@@ -4,13 +4,14 @@
 
 {% block body %}
     <h1>Résultats de la recherche pour "{{ keyword }}"</h1>
-
+    
+<div class="search-results">
     {% if products is empty %}
         <p>Aucun produit trouvé.</p>
     {% else %}
-        <div class="products">
+        <div class="products-catalogue">
             {% for product in products %}
-                <div class="product">
+                <div class="product-catalogue-item">
                     <h2>{{ product.name }}</h2>
                     <img src="{{ product.imageUrl }}" alt="{{ product.name }}">
                     <p>{{ product.description | slice(0, 100) }}...</p>
@@ -20,5 +21,6 @@
             {% endfor %}
         </div>
     {% endif %}
+</div>
 {% endblock %}
 

@@ -1,0 +1,111 @@
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: #444;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+/* Sections */
+section {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Liste de produits */
+
+.product-link {
+    text-decoration: none; /* Supprime le soulignement */
+    color: inherit; /* Hérite de la couleur du texte */
+    display: inline-block; /* Restreint la taille au contenu */
+    width: auto; /* Ne force pas la largeur à 100% */
+    height: auto; /* Ne force pas la hauteur */
+}
+
+/* Style des items produits */
+.product-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    background-color: #fff;
+    text-align: center;
+    max-width: 200px; /* Fixe une largeur maximale pour chaque produit */
+}
+
+.product-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Images */
+.product-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* Titre du produit */
+.product-item h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Description */
+.product-item p {
+    font-size: 0.9em;
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Prix */
+.product-item p strong {
+    color: #007BFF;
+}
+
+/* Disposition en grille pour les produits */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .product-item {
+        width: calc(50% - 20px); /* 2 items par ligne sur tablettes */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-item {
+        width: 100%; /* 1 item par ligne sur mobile */
+    }
+}
+

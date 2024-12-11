@@ -4,13 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Bienvenue{% endblock %}</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/catalogue-styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cart-styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header-styles.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/login-styles.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/register-styles.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/product-show-styles.css') }}">
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
     <header>
-        <nav>
+    <nav>
+        <div class="nav-left">
             <a href="{{ path('home_index') }}">Accueil</a>
+            <a href="{{ path('product_index') }}">Catalogue</a>
+            <a href="{{ path('cart_index') }}">Panier</a>
+            <a href="{{ path('order_index') }}">Commande</a>
+        </div>
+        <div class="nav-right">
             {% if app.user %}
                 <span>Bienvenue, {{ app.user.username }}!</span> 
                 <a href="{{ path('app_logout') }}">Déconnexion</a>
@@ -18,16 +30,13 @@
                 <a href="{{ path('app_login') }}">Connexion</a>
                 <a href="{{ path('app_register') }}">Inscription</a>
             {% endif %}
-            <a href="{{ path('product_index') }}">Catalogue</a>
-            <a href="{{ path('cart_index') }}">Panier</a>
-            <a href="{{ path('order_index') }}">Commande</a>
-            {# SearchBar #}
             <form action="{{ path('product_search') }}" method="get" class="search-form">
-            <input type="text" name="q" placeholder="Rechercher un produit..." value="{{ app.request.query.get('q') }}">
-            <button type="submit">Rechercher</button>
-</form>
-        </nav>
-    </header>
+                <input type="text" name="q" placeholder="Rechercher un produit..." value="{{ app.request.query.get('q') }}">
+                <button type="submit">Rechercher</button>
+            </form>
+        </div>
+    </nav>
+</header>
 
     <main>
         {% block body %}{% endblock %}

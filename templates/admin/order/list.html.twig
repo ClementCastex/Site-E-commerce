@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des commandes{% endblock %}
+
+{% block body %}
+    <h1>Liste des commandes</h1>
+
+    <ul>
+        {% for order in orders %}
+            <li>
+                Commande #{{ order.orderNumber }} - {{ order.status }}
+                <a href="{{ path('admin_order_view', { id: order.id }) }}">Voir</a>
+            </li>
+        {% else %}
+            <li>Aucune commande trouvée.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
