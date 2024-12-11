@@ -2,11 +2,18 @@
 
 {% block title %}Modifier un produit{% endblock %}
 
-{% block body %}
-    <h1>Modifier le produit</h1>
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin-edit-product-styles.css') }}">
+{% endblock %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-success">Enregistrer les modifications</button>
-    {{ form_end(form) }}
+{% block body %}
+    <a href="{{ path('admin_dashboard') }}" class="admin-back-btn">Retour au tableau de bord</a>
+    <h1 class="admin-edit-product-title">Modifier le produit</h1>
+
+    <div class="admin-form-container">
+        {{ form_start(form) }}
+            {{ form_widget(form, { 'attr': {'class': 'form-control'} }) }}
+            <button type="submit" class="btn admin-form-submit">Enregistrer les modifications</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

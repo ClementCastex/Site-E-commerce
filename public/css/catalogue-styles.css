@@ -1,0 +1,142 @@
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #444;
+}
+
+/* Section des produits */
+.products-catalogue {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 0;
+}
+
+.product-catalogue-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    width: calc(25% - 20px); /* 4 items par ligne */
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-catalogue-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-catalogue-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.product-catalogue-item h2 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.product-catalogue-item p {
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.product-catalogue-item strong {
+    color: #007BFF;
+}
+
+.product-catalogue-item a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.product-catalogue-item a:hover {
+    background-color: #0056b3;
+}
+
+/* Détails d'un produit */
+.product-detail {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-detail img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.product-detail p {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.product-detail strong {
+    color: #007BFF;
+}
+
+.product-detail .btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.product-detail .btn:hover {
+    background-color: #218838;
+}
+
+/* Recherche */
+.search-results {
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.search-results h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .product-catalogue-item {
+        width: calc(50% - 20px); /* 2 items par ligne */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-catalogue-item {
+        width: 100%; /* 1 item par ligne */
+    }
+}

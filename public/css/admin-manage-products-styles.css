@@ -1,0 +1,108 @@
+/* Style global */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.admin-manage-products-title {
+    text-align: center;
+    margin: 20px 0;
+    color: #007BFF;
+}
+
+/* Bouton de retour */
+.admin-back-btn {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.admin-back-btn:hover {
+    background-color: #545b62;
+}
+
+/* Conteneur des produits */
+.admin-product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.admin-product-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(33% - 20px); /* 3 produits par ligne */
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.admin-product-item h2 {
+    font-size: 1.4em;
+    color: #007BFF;
+}
+
+.admin-product-item p {
+    font-size: 1em;
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Boutons */
+.admin-product-item .btn {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #bd2130;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-product-item {
+        width: calc(50% - 20px); /* 2 produits par ligne sur tablette */
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-product-item {
+        width: 100%; /* 1 produit par ligne sur mobile */
+    }
+}
